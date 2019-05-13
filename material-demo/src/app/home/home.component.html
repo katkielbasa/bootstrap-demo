@@ -1,0 +1,14 @@
+﻿
+<!-- <mat-drawer-container class="example-container"> -->
+
+    <mat-drawer mode="side" opened>
+      <button mat-button [matMenuTriggerFor]="menum">Menu</button>
+      <mat-menu #menum="matMenu">
+        <button mat-menu-item [routerLink]="['/servers']">Server Tables</button>
+        <button mat-menu-item [routerLink]="['/add']">Add Server</button>
+      </mat-menu>
+  
+    </mat-drawer>
+ 
+  <!-- </mat-drawer-container> -->
+  
