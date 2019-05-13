@@ -99,16 +99,16 @@ export class ServersTableComponent implements OnInit {
   }
 
 
-  showDialog(server:Server) {
-      this.display = true;
-      this.serId = server.id;
-  }
+  // showDialog(server:Server) {
+  //     this.display = true;
+  //     this.serId = server.id;
+  // }
 
   private loadAllServers(orgId:string) {
     this.serverService.getServersForOrg(orgId).pipe(first()).subscribe(servers => {
       this.servers = servers['server'];
       this.orgName = servers['organizationName'];
-     // console.log("my servers: ", JSON.stringify(this.servers))
+      console.log("my servers: ", JSON.stringify(this.servers))
     });
   }
 
