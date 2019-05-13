@@ -1,0 +1,9 @@
+<h1>Please select Your Organisation: </h1> 
+<div class="form-group">
+<label for="organisation">Organisation Name</label>
+<select class="form-control" (change)="selectChangeHandler($event)">
+    <option *ngFor="let organisation of organisations" [value]="organisation.id">{{organisation.name}}</option>
+</select>
+<!-- <p>
+  <span>You selected: </span><b>{{selectedOrg_id}}</b></p> -->
+</div>
