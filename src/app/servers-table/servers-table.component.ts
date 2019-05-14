@@ -18,9 +18,9 @@ export class ServersTableComponent implements OnInit {
 
   cols: any[];
 
-  page = 1;
-  pageSize = 4;
-  collectionSize = this.servers.length;
+  page:number ;
+  pageSize:number;
+  collectionSize: number;
   private orgId: string;
   private serId:string;
   private orgName: string;
@@ -48,24 +48,7 @@ export class ServersTableComponent implements OnInit {
       { field: 'started', header:'started' },
       { field: 'deployed', header:'Deployed' },
       { field: 'state', header:'state' }
-
     ];
-    // this.started = [
-    //   { label: 'true', value: 'Yes' },
-    //   { label: 'false', value: 'No' }
-    // ]
-    // this.deployed = [
-    //   { label: 'true', value: 'Yes' },
-    //   { label: 'false', value: 'No' }
-    // ]
-    // this.state = [
-    //   { label: 'true', value: 'Yes' },
-    //   { label: 'false', value: 'No' }
-    // ]
-    // this.speed = [
-    //   { label: 'true', value: 'Yes' },
-    //   { label: 'false', value: 'No' }
-    //]
    }
 
   deleteServer(orgId: string, s_id: string)  {
@@ -86,7 +69,7 @@ export class ServersTableComponent implements OnInit {
   }
 
   editServer(server: Server): void {
-  //  console.log("edit server id ", server.id );
+    console.log("edit server id ", server.id );
     this.router.navigate(['/edit', this.orgId, server.id] );
   };
 
@@ -108,15 +91,16 @@ export class ServersTableComponent implements OnInit {
     this.serverService.getServersForOrg(orgId).pipe(first()).subscribe(servers => {
       this.servers = servers['server'];
       this.orgName = servers['organizationName'];
+      this.collectionSize = this.servers.length;
       console.log("my servers: ", JSON.stringify(this.servers))
     });
   }
 
-  get paginServers(): Server[] {
-    return this.servers
-      .map((country, i) => ({id: i + 1, ...country}))
-      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
-  }
+  // getPagination(): Server[] {
+  //   return this.servers
+  //     .map((server, i) => ({id: i + 1, ...servers}))
+  //     .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+  // }
 
 
 

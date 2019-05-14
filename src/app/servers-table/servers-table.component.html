@@ -1,13 +1,21 @@
+<app-home></app-home>
 <app-org-selector (messageEvent)="receiveMessage($event)"></app-org-selector>
-<button (click)="displayServers()">SHOW</button>
+<button class="btn btn-primary"  (click)="displayServers()">SHOW</button>
 
 
 <table class="table table-striped">
   <thead>
+      <tr *ngFor="let server of servers | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
     <tr>
-      <th *ngFor="let col of columns">
-        {{col.header}}
-      </th>
+        <th>name</th>
+        <th>id</th>
+        <th>cpu count</th>
+        <th>cpu speed</th>
+        <th>memory</th>
+        <th>create time</th>
+        <th>started</th>
+        <th>deployed</th>
+        <th>state</th>
       <th>Delete</th>
       <th>Edit</th>
       <th>View details</th>
@@ -25,19 +33,22 @@
       <td>{{server.deployed}}</td>
       <td>{{server.state}}</td>
       <td>
-        <button label="Delete" (click)="showDialog(server)"></button>
+        <button type="button" class="btn btn-primary" label="Delete" (click)="deleteServer(this.orgId, server.id)">Delete</button>
       </td>
       <td>
-        <button label="Edit" (click)="editServer(server)"></button>
+        <button type="button" class="btn btn-primary" label="Edit" (click)="editServer(server)">Edit</button>
       </td>
       <td>
-        <button label="Show" (click)="viewDetails(server)"></button>
+        <button type="button" class="btn btn-primary" label="Show" (click)="viewDetails(server)">Show</button>
       </td>
     </tr>
   </tbody>
 </table>
-
-<div class="d-flex justify-content-between p-2">
+<ngb-pagination
+  [(page)]="page"
+  [pageSize]="pageSize"
+  [collectionSize]="servers.length"></ngb-pagination>
+  <!-- <div class="d-flex justify-content-between p-2">
   <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
   </ngb-pagination>
 
@@ -46,4 +57,4 @@
     <option [ngValue]="4">4 items per page</option>
     <option [ngValue]="6">6 items per page</option>
   </select>
-</div>
+</div> -->

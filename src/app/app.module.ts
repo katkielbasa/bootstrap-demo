@@ -68,6 +68,8 @@ import { Bootstrap4FrameworkModule } from 'angular7-json-schema-form';
 import { NoFrameworkModule } from 'angular7-json-schema-form';
 import { OrgSelectorComponent } from './org-selector/org-selector.component';
 import { ServerDetailsComponent } from './server-details/server-details.component';
+import { GridModule } from '@progress/kendo-angular-grid';
+
 
 
 registerLocaleData(en);
@@ -132,6 +134,7 @@ registerLocaleData(en);
     //NgZorroAntdModule,
     FormsModule,
     HttpClientModule,
+    GridModule,
    // ButtonsModule,
     //LayoutModule
   ],
